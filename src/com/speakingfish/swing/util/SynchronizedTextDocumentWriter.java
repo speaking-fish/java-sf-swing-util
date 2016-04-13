@@ -20,7 +20,7 @@ public class SynchronizedTextDocumentWriter extends TextDocumentWriter {
             len
             );
         invokeLater(new Runnable() {
-            @Override public void run() {
+            public void run() {
                 try {
                     SynchronizedTextDocumentWriter.super.write(value, 0, value.length);
                 } catch(IOException e) {
