@@ -34,6 +34,7 @@ public class FrameTimer {
             
             @Override public void windowClosed(WindowEvent e) {
                 _closed = true;
+                _thread = null;
             }
             
             @Override public void windowIconified  (WindowEvent e) {}
@@ -49,8 +50,8 @@ public class FrameTimer {
     public final List<Runnable> actions  () { return _actions  ; }
     
     protected synchronized void needThread() {
-        if(null == _thread) {
-            if(_owner.isDisplayable()) {
+        if((null == _thread) && (!_closed) ) {
+            //if(_owner.isDisplayable()) {
                 _thread = new Thread(new Runnable() {
                     
                     protected final Runnable synchronizedRun = new Runnable() {
@@ -96,7 +97,7 @@ public class FrameTimer {
                         }
                     }
                 });
-            }
+            //}
         }
     }
 
