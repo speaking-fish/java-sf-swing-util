@@ -97,6 +97,7 @@ public class FrameTimer {
                         }
                     }
                 });
+                _thread.start();
             //}
         }
     }
